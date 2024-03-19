@@ -14,12 +14,12 @@ app.UseSwagger();
 app.UseSwaggerUI();
 app.UseHttpsRedirection();
 
-// API with correct metadata, type safety, and no global exception handling
-app.MapPost("/heroes", Results<BadRequest<string>, Created>(Hero hero, HeroService service) =>
+// API with correct metadata, type safety, and no global exception handling (optimized example)
+app.MapPost("/heroes", Results<ValidationProblem, Created>(Hero hero, HeroService service) =>
     {
         var result = service.Add(hero);
-        if (result.Status == ResultStatus.Invalid)
-            return TypedResults.BadRequest(result.ValidationErrors[0].ErrorMessage);
+        if (result.IsInvalid())
+            return TypedResultsExt.ValidationProblem(result);
 
         return TypedResults.Created();
     })

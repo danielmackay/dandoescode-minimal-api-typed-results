@@ -11,13 +11,14 @@ app.UseSwagger();
 app.UseSwaggerUI();
 app.UseHttpsRedirection();
 
-// API with incorrect metadata (returns 201, but OpenAPI states 200)
+// API with correct metadata (including global error handler)
 app.MapPost("/heroes", (Hero hero, HeroService service) =>
     {
         service.Add(hero);
         return Results.Created();
     })
     .WithName("CreateHero")
-    .WithOpenApi();
+    .WithOpenApi()
+    .Produces(StatusCodes.Status201Created);
 
 app.Run();

@@ -13,5 +13,14 @@ public class HeroService
 
     public Hero? GetByName(string name) => _heroes.FirstOrDefault(h => h.Name == name);
 
-    public void Add(Hero hero) => _heroes.Add(hero);
+    public void Add(Hero hero)
+    {
+        if (string.IsNullOrWhiteSpace(hero.Name))
+            throw new ValidationException("Name is required");
+
+        if (string.IsNullOrWhiteSpace(hero.Power))
+            throw new ValidationException("Power is required");
+
+        _heroes.Add(hero);
+    }
 }

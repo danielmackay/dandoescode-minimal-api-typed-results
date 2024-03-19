@@ -11,14 +11,13 @@ app.UseSwagger();
 app.UseSwaggerUI();
 app.UseHttpsRedirection();
 
-// API with correct metadata and global validation error handler
+// Simplified API with correct metadata
 app.MapPost("/heroes", (Hero hero, HeroService service) =>
     {
         service.Add(hero);
-        return Results.Created();
+        return TypedResults.Created();
     })
     .WithName("CreateHero")
-    .WithOpenApi()
-    .Produces(StatusCodes.Status201Created);
+    .WithOpenApi();
 
 app.Run();

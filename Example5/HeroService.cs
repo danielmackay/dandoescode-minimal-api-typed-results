@@ -1,4 +1,6 @@
-﻿namespace Example5;
+﻿using Ardalis.Result;
+
+namespace Example5;
 
 public record Hero(string Name, string Power);
 
@@ -13,5 +15,8 @@ public class HeroService
 
     public Hero? GetByName(string name) => _heroes.FirstOrDefault(h => h.Name == name);
 
-    public void Add(Hero hero) => _heroes.Add(hero);
+    public void Add(Hero hero)
+    {
+        _heroes.Add(hero);
+    }
 }

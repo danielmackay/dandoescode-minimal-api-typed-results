@@ -1,4 +1,4 @@
-﻿namespace Example4;
+﻿namespace Example3;
 
 public class ValidationException : Exception
 {

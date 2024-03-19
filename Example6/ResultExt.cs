@@ -1,7 +1,7 @@
 ﻿using Ardalis.Result;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Example7;
+namespace Example6;
 
 public static class ResultExt
 {

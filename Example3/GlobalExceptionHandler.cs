@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Example4;
+namespace Example3;
 
 internal sealed class GlobalExceptionHandler : IExceptionHandler
 {
@@ -23,8 +23,10 @@ internal sealed class GlobalExceptionHandler : IExceptionHandler
 
             await httpContext.Response
                 .WriteAsJsonAsync(problemDetails, cancellationToken);
+
+            return true;
         }
 
-        return true;
+        return false;
     }
 }
